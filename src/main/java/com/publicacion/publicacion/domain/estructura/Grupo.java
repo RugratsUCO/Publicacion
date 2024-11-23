@@ -1,6 +1,8 @@
 package com.publicacion.publicacion.domain.estructura;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.publicacion.publicacion.utils.UtilBoolean;
 import com.publicacion.publicacion.utils.UtilObject;
 import com.publicacion.publicacion.utils.UtilText;
@@ -9,6 +11,8 @@ import jakarta.persistence.*;
 import java.util.UUID;
 @Entity
 @Table(name = "Grupo")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Grupo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

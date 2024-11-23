@@ -1,6 +1,8 @@
 package com.publicacion.publicacion.domain.publicacion;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.publicacion.publicacion.domain.estructura.ParticipanteGrupo;
 import com.publicacion.publicacion.utils.*;
@@ -10,6 +12,8 @@ import java.util.Date;
 import java.util.UUID;
 @Entity
 @Table(name = "Publicacion")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Publicacion {
     @Id
     //@GeneratedValue(strategy = GenerationType.UUID)
@@ -29,7 +33,7 @@ public final class Publicacion {
     private Date fechaPublicacion;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "participanteGrupo")
+    @JoinColumn(name = "autor")
     private ParticipanteGrupo autor;
 
     @JsonCreator

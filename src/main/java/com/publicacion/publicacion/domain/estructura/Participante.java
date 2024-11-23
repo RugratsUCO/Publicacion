@@ -1,6 +1,8 @@
 package com.publicacion.publicacion.domain.estructura;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.publicacion.publicacion.domain.persona.Persona;
 import com.publicacion.publicacion.utils.UtilBoolean;
 import com.publicacion.publicacion.utils.UtilObject;
@@ -10,6 +12,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Participante")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Participante {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
