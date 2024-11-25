@@ -21,7 +21,7 @@ public final class PublicacionService {
     public PublicacionService(PublicacionRepository repository){
         this.repository = repository;
     }
-    public void publicar(Publicacion publicacion) {
+    public void publicar(Publicacion publicacion) throws RuntimeException {
         Optional<Publicacion> publicacionPrueba = repository.findByTitulo(publicacion.getTitulo());
         if(publicacionPrueba.isEmpty()) {
             do {
@@ -33,6 +33,8 @@ public final class PublicacionService {
             } while (publicacionPrueba.isPresent());
             publicacion.setFechaPublicacion(Date.from(Instant.now())).setActivo(UtilBoolean.getTrue());
             repository.save(publicacion);
+        }else {
+            throw new RuntimeException();
         }
     }
     public List<Publicacion> listarPorGrupo(Grupo grupo) {
